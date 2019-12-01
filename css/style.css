@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+/* ALL */
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+/* INDEX.HTML */
+
+#index_body{
+    background: black;
+}
+
+#main_title{
+    font-size: 5em;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 5% 0 10% 0;
+    color: white;
+}
+
+#title_screen{
+    width: 100%;
+    text-align: center;
+}
+
+.container{
+    display: inline-block;
+    width: 30%;
+    padding: 3%;
+    border: white 5px solid;
+    border-radius: 20px;
+}
+
+#pokemon_container{
+    background-color: red;
+    margin-left: 1%;
+}
+
+#pokemon_img{
+    width: 100%;
+    margin-bottom: 4%;
+}
+
+#digimon_container{
+    background-color: blue;
+    margin-right: 1%;
+}
+
+#digimon_img{
+    width: 96%;
+}
+
+#vs{
+    width: 16%;
+    margin: 0 4% 0 4%;
+}
+
