@@ -59,3 +59,38 @@ body{
     margin: 0 4% 0 4%;
 }
 
+/* POKEDEX.HTML */
+
+#pokedex_body{
+    background-color: red;
+}
+
+#pokedex_container{
+    display: flex;
+    flex-direction: column;
+}
+
+#pokedex_container img{
+    width: 40%;
+    margin: auto;
+}
+
+#pokedex_img{
+    background-color: white;
+    height: 300px;
+    width: 300px;
+    margin: 6% auto 0 auto;
+    border-radius: 10px;
+}
+
+#buttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.button{
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+}
