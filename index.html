@@ -9,15 +9,37 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body id="index_body">
+<body>
 
     <h1 id="main_title">Choose your fighter !</h1>
-    <div id="title_screen">
-        <a href="pokedex.html"><div id="pokemon_container" class="container"><img src="img/pokemon.png" alt="Pokemon" id="pokemon_img"></div></a>
-        <img src="img/vs.png" alt="VS" id="vs"> 
-        <a href="#"><div id="digimon_container" class="container"><img src="img/digimon.png" alt="Digimon" id="digimon_img"></div></a>
+
+    <div id="pokemon_container" class="container">
+        <img src="img/pokemon.png" alt="Pokemon" id="pokemon_img">
+        <div id="pokedex">
+            <div id="pokedex_content">
+                <div id="pokedex_main">
+                    <div id="pokedex_img"> <!-- JS --> </div>
+                    <h3 id="pokedex_name"> <!-- JS --> </h3>
+                </div>
+                <div id="pokedex_details"><ul><li>Coucou</li><li>Coucou</li><li>Coucou</li><li>Coucou</li><li>Coucou</li><li>Coucou</li></ul></div>
+            </div>
+        
+            <div id="buttons">
+                <div class="button" id="button_left"></div>
+                <div id="button_center"></div>
+                <div class="button" id="button_right"></div>
+            </div>
+        </div>
     </div>
 
+    <img src="img/vs.png" alt="VS" id="vs">
+
+    <div id="digimon_container" class="container">
+        <img src="img/digimon.png" alt="Digimon" id="digimon_img">
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 
 </html>

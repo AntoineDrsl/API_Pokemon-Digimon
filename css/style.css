@@ -6,25 +6,17 @@ body{
     margin: 0;
     padding: 0;
     font-size: 15px;
+    background-color: black;
 }
 
 /* INDEX.HTML */
-
-#index_body{
-    background: black;
-}
 
 #main_title{
     font-size: 5em;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
-    margin: 5% 0 10% 0;
+    margin: 4% 0 0 0;
     color: white;
-}
-
-#title_screen{
-    width: 100%;
-    text-align: center;
 }
 
 .container{
@@ -33,20 +25,21 @@ body{
     padding: 3%;
     border: white 5px solid;
     border-radius: 20px;
+    margin-top: 180px;
 }
 
 #pokemon_container{
-    background-color: red;
+    background-color: #C00D0D;
     margin-left: 1%;
 }
 
 #pokemon_img{
     width: 100%;
-    margin-bottom: 4%;
+    margin-bottom: 3%;
 }
 
 #digimon_container{
-    background-color: blue;
+    background-color: #2C71B8;
     margin-right: 1%;
 }
 
@@ -61,27 +54,18 @@ body{
 
 /* POKEDEX.HTML */
 
-#pokedex_body{
-    background-color: red;
-}
-
-#pokedex_container{
-    display: flex;
-    flex-direction: column;
-}
-
-#pokedex_container img{
-    width: 35%;
-    margin: auto;
+#pokedex{
+    display: none;
 }
 
 #pokedex_content{
     display: flex;
     justify-content: space-around;
-    margin: 2% auto 2% auto;
+    margin: 0 10% 0 10%;
 }
 
 #pokedex_details{
+    display: none;
 }
 
 #pokedex_name{
@@ -91,17 +75,21 @@ body{
     font-size: 1.7em;
 }
 
+#pokedex_main{
+    width: 60%;
+}
+
 #pokedex_img{
     background-color: white;
-    height: 300px;
-    width: 300px;
     border-radius: 10px;
+    width: 100%;
+    height: auto;
 }
 
 #buttons{
     display: flex;
     justify-content: space-around;
-    margin: 0 37%;
+    margin: 0 30%;
 }
 
 #button_right{
@@ -109,7 +97,7 @@ body{
     height: 0;
     border-top: 35px solid transparent;
     border-bottom: 30px solid transparent;
-    border-left: 40px solid blue;
+    border-left: 40px solid #2C71B8;
 }
 
 #button_left{
@@ -117,7 +105,7 @@ body{
     height: 0;
     border-top: 35px solid transparent;
     border-bottom: 30px solid transparent;
-    border-right: 40px solid blue;
+    border-right: 40px solid #2C71B8;
 }
 
 #button_center{
@@ -125,5 +113,5 @@ body{
     height: 55px;
     width: 55px;
     border-radius: 30px;
-    background: green;
+    background: #FFCB05;
 }

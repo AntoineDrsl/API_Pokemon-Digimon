@@ -1,10 +1,23 @@
 window.onload = function() {    
 
+    //Define variables
     const buttonRight = document.getElementById('button_right');
     const buttonLeft = document.getElementById('button_left');
     const buttonCenter = document.getElementById('button_center');
     let pokemonNumber = 1;
+    let isDisplayed = false;
     
+    //Pokedex
+    $("#pokemon_img").click(function() {
+        $("#main_title").animate({'margin': '1% 0'}, 1000, function(){
+            $(".container").animate({'margin-top': '10px'}, 1000, function(){
+                $("#pokedex").slideDown();
+            });
+        });
+        
+    })
+
+    //Right button
     buttonRight.addEventListener("click", function() {
         //Jusqu'à la 4ème génération faut pas pousser
         if(pokemonNumber < 493) { 
@@ -16,6 +29,7 @@ window.onload = function() {
         }
     })
 
+    //Left button
     buttonLeft.addEventListener("click", function(){
         if(pokemonNumber > 1) {
             pokemonNumber--;
@@ -26,12 +40,24 @@ window.onload = function() {
         }
     })
 
-    buttonCenter.addEventListener("click", function(){
-        requestAnimationFrame(displayDetails, 3000);
-    })
+    //Center button
+    $("#button_center").click(function(){
+        if(isDisplayed === false) {
 
+            isDisplayed = true;
+            $("#button_right, #button_left").fadeOut("slow");
+            $("#pokedex_details").fadeIn();
+
+        } else{
+
+            isDisplayed = false;
+            $("#button_right, #button_left").fadeIn(); 
+            $('#pokedex_details').fadeOut();       
+            
+        }
+    });
     
-
+    //API
     getPokemons(pokemonNumber);
 
 }
@@ -58,9 +84,3 @@ function getPokemons(pokemonNumber) {
     xhr.send();
 
 }
-
-function displayDetails() {
-    const details = document.getElementById('pokedex_details');
-    details.style.display = "block";
-}
-
