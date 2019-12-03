@@ -3,6 +3,7 @@
 /* ALL */
 
 body{
+    text-align: center;
     margin: 0;
     padding: 0;
     font-size: 15px;
@@ -35,7 +36,8 @@ body{
 
 #pokemon_img{
     width: 100%;
-    margin-bottom: 3%;
+    display: block;
+    margin: auto;
 }
 
 #digimon_container{
@@ -61,11 +63,17 @@ body{
 #pokedex_content{
     display: flex;
     justify-content: space-around;
-    margin: 0 10% 0 10%;
+    margin: 12% 10% 6% 10%;
 }
 
 #pokedex_details{
     display: none;
+    text-align: left;
+    margin-left: 10%;
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.1em;
+    width: 100%;
 }
 
 #pokedex_name{
@@ -73,6 +81,7 @@ body{
     color: white;
     font-family: 'Press Start 2P', cursive;
     font-size: 1.7em;
+    margin-bottom: 0;
 }
 
 #pokedex_main{
@@ -98,6 +107,7 @@ body{
     border-top: 35px solid transparent;
     border-bottom: 30px solid transparent;
     border-left: 40px solid #2C71B8;
+    cursor: pointer;
 }
 
 #button_left{
@@ -106,6 +116,7 @@ body{
     border-top: 35px solid transparent;
     border-bottom: 30px solid transparent;
     border-right: 40px solid #2C71B8;
+    cursor: pointer;
 }
 
 #button_center{
@@ -114,4 +125,11 @@ body{
     width: 55px;
     border-radius: 30px;
     background: #FFCB05;
+    cursor: pointer;
+}
+
+#infos{
+    color: white; 
+    font-size: 3em; 
+    cursor: pointer;
 }

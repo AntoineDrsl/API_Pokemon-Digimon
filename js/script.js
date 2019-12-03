@@ -10,8 +10,10 @@ window.onload = function() {
     //Pokedex
     $("#pokemon_img").click(function() {
         $("#main_title").animate({'margin': '1% 0'}, 1000, function(){
-            $(".container").animate({'margin-top': '10px'}, 1000, function(){
-                $("#pokedex").slideDown();
+            $(".container").animate({'margin-top': '30px', 'padding': '1%'}, 1000, function(){
+                $("#pokemon_img").animate({'width': '80%'}, 1000, function() {
+                    $("#pokedex").slideDown(1000);
+                });
             });
         });
         
@@ -40,20 +42,21 @@ window.onload = function() {
         }
     })
 
-    //Center button
-    $("#button_center").click(function(){
+    //Infos button
+    $("#infos").click(function(){
         if(isDisplayed === false) {
 
             isDisplayed = true;
-            $("#button_right, #button_left").fadeOut("slow");
-            $("#pokedex_details").fadeIn();
+            $("#pokedex_main").animate({'width': '50%'}, 1000, function() {  
+                $("#pokedex_details").fadeIn();
+            });
 
         } else{
 
             isDisplayed = false;
-            $("#button_right, #button_left").fadeIn(); 
-            $('#pokedex_details').fadeOut();       
-            
+            $("#pokedex_details").fadeOut(400, function() {
+                $("#pokedex_main").animate({'width': '60%'}, 1000);
+            });
         }
     });
     
@@ -69,18 +72,23 @@ function getPokemons(pokemonNumber) {
         if(xhr.readyState === 4) {
 
             const pokemon = JSON.parse(xhr.responseText);
-            let pokemonName = pokemon.name;        
+            let pokemonName = pokemon.names[2].name;        
             newPokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
-            const pokemonImg = pokemon.sprites.front_default;
+            const pokemonColor = pokemon.color.name;
+            const pokemonHabitat = pokemon.habitat != null ? pokemon.habitat.name : "unknown";
+            const pokemonDescription = pokemon.flavor_text_entries[1].flavor_text;
             
             const pokedexImg = document.getElementById('pokedex_img');
             const pokedexName = document.getElementById('pokedex_name');
-            pokedexImg.innerHTML = "<img src='" + pokemonImg + "' alt='" + newPokemonName + "' style='width: 100%'></img>";
+            pokedexImg.innerHTML = "<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonNumber + ".png' alt='" + newPokemonName + "' style='width: 100%'></img>";
             pokedexName.innerHTML = newPokemonName;
+
+            const pokedexDetails = document.getElementById('pokedex_details');
+            pokedexDetails.innerHTML =  "<p>Color : " + pokemonColor + "</p><p>Habitat : " + pokemonHabitat + "</p><p>Description : " + pokemonDescription + "</p>";
 
         }
     }
-    xhr.open("GET", "https://pokeapi.co/api/v2/pokemon-form/" + pokemonNumber);
+    xhr.open("GET", "https://pokeapi.co/api/v2/pokemon-species/" + pokemonNumber);
     xhr.send();
 
 }
