@@ -13,7 +13,7 @@ body{
 /* INDEX.HTML */
 
 #main_title{
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
     margin: 4% 0 0 0;
@@ -23,7 +23,6 @@ body{
 .container{
     display: inline-block;
     width: 30%;
-    padding: 3%;
     border: white 5px solid;
     border-radius: 20px;
     margin-top: 180px;
@@ -32,9 +31,10 @@ body{
 #pokemon_container{
     background-color: #C00D0D;
     margin-left: 1%;
+    padding: 3%;
 }
 
-#pokemon_img{
+.title{
     width: 100%;
     display: block;
     margin: auto;
@@ -43,27 +43,24 @@ body{
 #digimon_container{
     background-color: #2C71B8;
     margin-right: 1%;
-}
-
-#digimon_img{
-    width: 96%;
+    padding: 2% 3%;
 }
 
 #vs{
     width: 16%;
-    margin: 0 4% 0 4%;
+    margin: 0 4% 2% 4%;
 }
 
 /* POKEDEX.HTML */
 
-#pokedex{
+.dex{
     display: none;
 }
 
-#pokedex_content{
+.dex_content{
     display: flex;
     justify-content: space-around;
-    margin: 12% 10% 6% 10%;
+    margin: 6% 10% 6% 10%;
 }
 
 #pokedex_details{
@@ -76,7 +73,7 @@ body{
     width: 100%;
 }
 
-#pokedex_name{
+.dex_name{
     text-align: center;
     color: white;
     font-family: 'Press Start 2P', cursive;
@@ -84,45 +81,56 @@ body{
     margin-bottom: 0;
 }
 
-#pokedex_main{
+.dex_main{
     width: 60%;
 }
 
-#pokedex_img{
+.dex_img{
     background-color: white;
     border-radius: 10px;
     width: 100%;
     height: auto;
 }
 
-#buttons{
+.buttons{
     display: flex;
     justify-content: space-around;
     margin: 0 30%;
 }
 
-#button_right{
+.button_right{
     width: 0;
     height: 0;
-    border-top: 35px solid transparent;
-    border-bottom: 30px solid transparent;
-    border-left: 40px solid #2C71B8;
+    border-top: 20px solid transparent;
+    border-bottom: 15px solid transparent;
     cursor: pointer;
 }
 
-#button_left{
+#pokemon_right{
+    border-left: 25px solid #2C71B8;
+}
+#digimon_right{
+    border-left: 25px solid #C00D0D;
+}
+
+.button_left{
     width: 0;
     height: 0;
-    border-top: 35px solid transparent;
-    border-bottom: 30px solid transparent;
-    border-right: 40px solid #2C71B8;
+    border-top: 20px solid transparent;
+    border-bottom: 15px solid transparent;
     cursor: pointer;
 }
 
-#button_center{
-    background-color: white;
-    height: 55px;
-    width: 55px;
+#pokemon_left{ 
+    border-right: 25px solid #2C71B8;
+}
+#digimon_left{
+    border-right: 25px solid #C00D0D;
+}
+
+.button_center{
+    height: 40px;
+    width: 40px;
     border-radius: 30px;
     background: #FFCB05;
     cursor: pointer;

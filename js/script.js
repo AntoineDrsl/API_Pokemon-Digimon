@@ -1,44 +1,65 @@
 window.onload = function() {    
 
     //Define variables
-    const buttonRight = document.getElementById('button_right');
-    const buttonLeft = document.getElementById('button_left');
-    const buttonCenter = document.getElementById('button_center');
+    const buttonRightPoke = document.getElementById('pokemon_right');
+    const buttonLeftPoke = document.getElementById('pokemon_left');
+    const buttonCenterPoke = document.getElementById('pokemon_center');
+    const buttonRightDigi = document.getElementById('digimon_right');
+    const buttonLeftDigi = document.getElementById('digimon_left');
+    const buttonCenterDigi = document.getElementById('digimon_center');
     let pokemonNumber = 1;
+    let digimonNumber = 1;
     let isDisplayed = false;
     
     //Pokedex
-    $("#pokemon_img").click(function() {
-        $("#main_title").animate({'margin': '1% 0'}, 1000, function(){
-            $(".container").animate({'margin-top': '30px', 'padding': '1%'}, 1000, function(){
-                $("#pokemon_img").animate({'width': '80%'}, 1000, function() {
-                    $("#pokedex").slideDown(1000);
-                });
-            });
+    $(document).click(function() {
+        $("#main_title").animate({'margin': '1% 0', 'font-size': '4em'}, 800, function(){
+            $(".dex").slideDown(1000);
         });
-        
+        $(".title").animate({'width': '80%'}, 800);
+        $(".container").animate({'margin-top': '30px', 'padding': '1%'}, 800);
     })
 
     //Right button
-    buttonRight.addEventListener("click", function() {
-        //Jusqu'à la 4ème génération faut pas pousser
-        if(pokemonNumber < 493) { 
+    buttonRightPoke.addEventListener("click", function() {
+        //Just the first gen, the best <3
+        if(pokemonNumber < 151) { 
             pokemonNumber++;
             getPokemons(pokemonNumber);
-        } else if (pokemonNumber === 493) {
+        } else if (pokemonNumber === 151) {
             pokemonNumber = 1;
             getPokemons(pokemonNumber);
         }
     })
 
+    buttonRightDigi.addEventListener("click", function() {
+        if(digimonNumber < 100) {
+            digimonNumber++;
+            getDigimons(digimonNumber);
+        } else if (pokemonNumber === 100) {
+            digimonNumber = 1;
+            getDigimons(digimonNumber);
+        }
+    })
+
     //Left button
-    buttonLeft.addEventListener("click", function(){
+    buttonLeftPoke.addEventListener("click", function(){
         if(pokemonNumber > 1) {
             pokemonNumber--;
             getPokemons(pokemonNumber);
         } else if (pokemonNumber === 1) {
-            pokemonNumber = 493;
+            pokemonNumber = 151;
             getPokemons(pokemonNumber);
+        }
+    })
+
+    buttonLeftDigi.addEventListener("click", function() {
+        if(digimonNumber > 1) {
+            digimonNumber--;
+            getDigimons(digimonNumber);
+        } else if (digimonNumber === 1) {
+            digimonNumber = 100;
+            getDigimons(digimonNumber);
         }
     })
 
@@ -47,21 +68,24 @@ window.onload = function() {
         if(isDisplayed === false) {
 
             isDisplayed = true;
-            $("#pokedex_main").animate({'width': '50%'}, 1000, function() {  
-                $("#pokedex_details").fadeIn();
+            $("#pokedex_main").animate({'width': '50%'}, 400, function() {   
+                    $("#pokedex_details").fadeIn();
             });
+            $("#pokedex_name").animate({'font-size': '1.2em'}, 400);
 
         } else{
 
             isDisplayed = false;
             $("#pokedex_details").fadeOut(400, function() {
-                $("#pokedex_main").animate({'width': '60%'}, 1000);
+                $("#pokedex_main").animate({'width': '60%'}, 400);
+                $("#pokedex_name").animate({'font-size': '1.7em'}, 400);
             });
         }
     });
     
     //API
     getPokemons(pokemonNumber);
+    getDigimons(digimonNumber);
 
 }
 
@@ -91,4 +115,25 @@ function getPokemons(pokemonNumber) {
     xhr.open("GET", "https://pokeapi.co/api/v2/pokemon-species/" + pokemonNumber);
     xhr.send();
 
+}
+
+function getDigimons(digimonNumber) {
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4) {
+
+            const digimon = JSON.parse(xhr.responseText);
+            let digimonName = digimon[0].name;
+            let digimonImg = digimon[0].img;
+
+            const digidexImg = document.getElementById('digidex_img');
+            const digidexName = document.getElementById('digidex_name');
+            digidexImg.innerHTML = "<img src='" + digimonImg + "' alt='" + digimonName + "' style='width: 80%'>";
+            digidexName.innerHTML = digimonName;
+
+        }
+    }
+    xhr.open("GET", "https://digimon-api.herokuapp.com/api/digimon/id/" + digimonNumber);
+    xhr.send();
 }
