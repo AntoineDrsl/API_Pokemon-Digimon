@@ -12,17 +12,19 @@ window.onload = function() {
     let isDisplayed = false;
     let isSelectedPoke = false;
     let isSelectedDigi = false;
+    let pokemonName = null;
+    let digimonName = null;
     
     //Pokedex
     $(document).click(function() {
-        $("#main_title").animate({'margin': '1% 0', 'font-size': '4em'}, 800, function(){
+        $(".main_title").animate({'margin': '1% 0', 'font-size': '4em'}, 800, function(){
             $(".dex").slideDown(1000);
         });
         $(".title").animate({'width': '80%'}, 800);
         $("#main-container").animate({'margin-top': '35px'}, 800);
     })
 
-    //Center button
+    //Center buttons
     buttonCenterPoke.addEventListener("click", function() {
 
         if(isSelectedPoke === false) {
@@ -32,10 +34,18 @@ window.onload = function() {
             for(i=0; i<5; i++){
                 $('#pokedex_img').fadeTo(100, 0.1).fadeTo(100, 1); 
             }  
+
+            
+            pokemonName = document.getElementById("pokedex_name").innerHTML;
+            displayLetsgo(isSelectedPoke, isSelectedDigi, pokemonName, digimonName);
+            
         } else {
             isSelectedPoke = false;
             document.getElementById('pokedex_img').style.backgroundColor = "white";
             buttonCenterPoke.style.backgroundColor = "#FFCB05";
+
+            pokemonName = null;
+            displayLetsgo(isSelectedPoke, isSelectedDigi, pokemonName, digimonName);
         } 
 
     })
@@ -48,11 +58,17 @@ window.onload = function() {
             buttonCenterDigi.style.backgroundColor = "#5BCB36";
             for(i=0; i<5; i++){
                 $('#digidex_img').fadeTo(100, 0.1).fadeTo(100, 1); 
-            }  
+            } 
+
+            digimonName = document.getElementById("digidex_name").innerHTML;
+            displayLetsgo(isSelectedPoke, isSelectedDigi, pokemonName, digimonName); 
         } else {
             isSelectedDigi = false;
             document.getElementById('digidex_img').style.backgroundColor = "white";
             buttonCenterDigi.style.backgroundColor = "#FFCB05";
+
+            digimonName = null;
+            displayLetsgo(isSelectedPoke, isSelectedDigi, pokemonName, digimonName);
         } 
 
     })
@@ -68,7 +84,6 @@ window.onload = function() {
                 pokemonNumber = 1;
                 getPokemons(pokemonNumber);
             }
-            console.log(isSelectedPoke);
         }
     })
 
@@ -129,6 +144,20 @@ window.onload = function() {
 
 }
 
+// Functions
+
+function displayLetsgo(isSelectedPoke, isSelectedDigi, pokemonName, digimonName) {
+
+    if(isSelectedPoke && isSelectedDigi) {
+        document.getElementById("letsgo").setAttribute("href", "fight.html?pokemon=" + pokemonName + "&digimon=" + digimonName + "");
+        $("#letsgo").fadeIn();
+    } else {
+        $("#letsgo").fadeOut(1);
+    }
+}
+
+// APIs
+
 function getPokemons(pokemonNumber) {
     
     const xhr = new XMLHttpRequest();
@@ -177,24 +206,4 @@ function getDigimons(digimonNumber) {
     }
     xhr.open("GET", "https://digimon-api.herokuapp.com/api/digimon/id/" + digimonNumber);
     xhr.send();
-}
-
-function loveMonster() {
-    
-    //Méthode jQuery
-    const settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://love-calculator.p.rapidapi.com/getPercentage?fname=Pokemon&sname=Digimon",
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "love-calculator.p.rapidapi.com",
-            "x-rapidapi-key": "c4ed86fce1msh787207524574572p16cc36jsn257c9f0b41a1"
-        }
-    }
-    
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
-
 }

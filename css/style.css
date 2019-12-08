@@ -16,14 +16,15 @@ body{
     flex-wrap: nowrap;
     justify-content: space-around;
     margin-top: 200px;
+    margin-bottom: 25px;
     align-items: center;
     align-content: center;
 }
 
-#main_title{
+.main_title{
     font-size: 4em;
     text-align: center;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', sans-serif;
     margin: 4% 0 0 0;
     color: white;
 }
@@ -98,6 +99,7 @@ body{
     background-color: white;
     border-radius: 10px;
     width: 100%;
+    height: 250px;
     text-align: center;
     display: block;
     margin: auto;
@@ -153,6 +155,17 @@ body{
     cursor: pointer;
 }
 
+#letsgo{
+    color: white;
+    background-color: green;
+    text-decoration: none;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1.5em;
+    padding: 15px 100px;
+    border-radius: 10px;
+    display: none;
+}
+
 @media (max-width: 1000px){
 
     #main-container{
@@ -169,4 +182,35 @@ body{
         margin-bottom: 50px;
     }
 
+}
+
+/* FIGHT */
+
+.sentences{
+    font-size: 3em;
+    text-align: center;
+    font-family: 'Press Start 2P', sans-serif;
+    margin: 4% 0 0 0;
+    color: white;
+    margin-top: 100px;
+}
+
+#final_sentence{
+    font-size: 4em;
+    text-align: center;
+    font-family: 'Press Start 2P', sans-serif;
+    margin: 4% 0 0 0;
+    color: blue;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#return{
+    color: white;
+    background-color: grey;
+    text-decoration: none;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1.5em;
+    padding: 15px 100px;
+    border-radius: 10px;
 }
