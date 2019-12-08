@@ -1,5 +1,5 @@
 window.onload = function() {    
-
+    
     //Define variables
     const buttonRightPoke = document.getElementById('pokemon_right');
     const buttonLeftPoke = document.getElementById('pokemon_left');
@@ -10,6 +10,8 @@ window.onload = function() {
     let pokemonNumber = 1;
     let digimonNumber = 1;
     let isDisplayed = false;
+    let isSelectedPoke = false;
+    let isSelectedDigi = false;
     
     //Pokedex
     $(document).click(function() {
@@ -17,49 +19,93 @@ window.onload = function() {
             $(".dex").slideDown(1000);
         });
         $(".title").animate({'width': '80%'}, 800);
-        $(".container").animate({'margin-top': '30px', 'padding': '1%'}, 800);
+        $("#main-container").animate({'margin-top': '35px'}, 800);
     })
 
-    //Right button
+    //Center button
+    buttonCenterPoke.addEventListener("click", function() {
+
+        if(isSelectedPoke === false) {
+            isSelectedPoke = true;
+            document.getElementById('pokedex_img').style.backgroundColor = "#5BCB36";
+            buttonCenterPoke.style.backgroundColor = "#5BCB36";
+            for(i=0; i<5; i++){
+                $('#pokedex_img').fadeTo(100, 0.1).fadeTo(100, 1); 
+            }  
+        } else {
+            isSelectedPoke = false;
+            document.getElementById('pokedex_img').style.backgroundColor = "white";
+            buttonCenterPoke.style.backgroundColor = "#FFCB05";
+        } 
+
+    })
+
+    buttonCenterDigi.addEventListener("click", function() {
+
+        if(isSelectedDigi === false) {
+            isSelectedDigi = true;
+            document.getElementById('digidex_img').style.backgroundColor = "#5BCB36";
+            buttonCenterDigi.style.backgroundColor = "#5BCB36";
+            for(i=0; i<5; i++){
+                $('#digidex_img').fadeTo(100, 0.1).fadeTo(100, 1); 
+            }  
+        } else {
+            isSelectedDigi = false;
+            document.getElementById('digidex_img').style.backgroundColor = "white";
+            buttonCenterDigi.style.backgroundColor = "#FFCB05";
+        } 
+
+    })
+
+    //Right buttons
     buttonRightPoke.addEventListener("click", function() {
-        //Just the first gen, the best <3
-        if(pokemonNumber < 151) { 
-            pokemonNumber++;
-            getPokemons(pokemonNumber);
-        } else if (pokemonNumber === 151) {
-            pokemonNumber = 1;
-            getPokemons(pokemonNumber);
+        if(isSelectedPoke === false) {
+            //Just the first gen, the best <3
+            if(pokemonNumber < 151) { 
+                pokemonNumber++;
+                getPokemons(pokemonNumber);
+            } else if (pokemonNumber === 151) {
+                pokemonNumber = 1;
+                getPokemons(pokemonNumber);
+            }
+            console.log(isSelectedPoke);
         }
     })
 
     buttonRightDigi.addEventListener("click", function() {
-        if(digimonNumber < 100) {
-            digimonNumber++;
-            getDigimons(digimonNumber);
-        } else if (pokemonNumber === 100) {
-            digimonNumber = 1;
-            getDigimons(digimonNumber);
+        if(isSelectedDigi === false) {
+            if(digimonNumber < 100) {
+                digimonNumber++;
+                getDigimons(digimonNumber);
+            } else if (pokemonNumber === 100) {
+                digimonNumber = 1;
+                getDigimons(digimonNumber);
+            }
         }
     })
 
-    //Left button
+    //Left buttons   
     buttonLeftPoke.addEventListener("click", function(){
-        if(pokemonNumber > 1) {
-            pokemonNumber--;
-            getPokemons(pokemonNumber);
-        } else if (pokemonNumber === 1) {
-            pokemonNumber = 151;
-            getPokemons(pokemonNumber);
+        if(isSelectedPoke === false) {
+            if(pokemonNumber > 1) {
+                pokemonNumber--;
+                getPokemons(pokemonNumber);
+            } else if (pokemonNumber === 1) {
+                pokemonNumber = 151;
+                getPokemons(pokemonNumber);
+            }
         }
     })
 
     buttonLeftDigi.addEventListener("click", function() {
-        if(digimonNumber > 1) {
-            digimonNumber--;
-            getDigimons(digimonNumber);
-        } else if (digimonNumber === 1) {
-            digimonNumber = 100;
-            getDigimons(digimonNumber);
+        if(isSelectedDigi === false) {
+            if(digimonNumber > 1) {
+                digimonNumber--;
+                getDigimons(digimonNumber);
+            } else if (digimonNumber === 1) {
+                digimonNumber = 100;
+                getDigimons(digimonNumber);
+            }
         }
     })
 
@@ -67,19 +113,13 @@ window.onload = function() {
     $("#infos").click(function(){
         if(isDisplayed === false) {
 
-            isDisplayed = true;
-            $("#pokedex_main").animate({'width': '50%'}, 400, function() {   
-                    $("#pokedex_details").fadeIn();
-            });
-            $("#pokedex_name").animate({'font-size': '1.2em'}, 400);
+            isDisplayed = true;   
+            $("#pokedex_details").fadeIn();
 
         } else{
 
             isDisplayed = false;
-            $("#pokedex_details").fadeOut(400, function() {
-                $("#pokedex_main").animate({'width': '60%'}, 400);
-                $("#pokedex_name").animate({'font-size': '1.7em'}, 400);
-            });
+            $("#pokedex_details").fadeOut();
         }
     });
     
@@ -90,9 +130,10 @@ window.onload = function() {
 }
 
 function getPokemons(pokemonNumber) {
-
+    
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
+
         if(xhr.readyState === 4) {
 
             const pokemon = JSON.parse(xhr.responseText);
@@ -104,7 +145,7 @@ function getPokemons(pokemonNumber) {
             
             const pokedexImg = document.getElementById('pokedex_img');
             const pokedexName = document.getElementById('pokedex_name');
-            pokedexImg.innerHTML = "<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonNumber + ".png' alt='" + newPokemonName + "' style='width: 100%'></img>";
+            pokedexImg.innerHTML = "<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemonNumber + ".png' alt='" + newPokemonName + "' style='width: 80%'></img>";
             pokedexName.innerHTML = newPokemonName;
 
             const pokedexDetails = document.getElementById('pokedex_details');
@@ -136,4 +177,24 @@ function getDigimons(digimonNumber) {
     }
     xhr.open("GET", "https://digimon-api.herokuapp.com/api/digimon/id/" + digimonNumber);
     xhr.send();
+}
+
+function loveMonster() {
+    
+    //Méthode jQuery
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://love-calculator.p.rapidapi.com/getPercentage?fname=Pokemon&sname=Digimon",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "love-calculator.p.rapidapi.com",
+            "x-rapidapi-key": "c4ed86fce1msh787207524574572p16cc36jsn257c9f0b41a1"
+        }
+    }
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+
 }
